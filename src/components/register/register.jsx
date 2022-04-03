@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./register_styles.css";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { auth } from '../../config/firebase_config';
+import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { db } from '../../config/firebase_config';
 import {addDoc, collection} from "firebase/firestore";
 

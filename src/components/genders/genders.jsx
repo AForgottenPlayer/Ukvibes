@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./gender_style.css";
 import { useEffect } from 'react';
 import { db } from '../../config/firebase_config';
-import { getDocs, collection, query, where } from "firebase/firestore"
+import { getDocs, collection } from "firebase/firestore"
 import { useNavigate } from 'react-router-dom'
 
 
