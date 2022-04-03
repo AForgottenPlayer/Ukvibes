@@ -3,7 +3,7 @@ import "./gender_style.css";
 import { FaPlay, FaPause, FaList} from "react-icons/fa"
 import { GrFavorite } from 'react-icons/gr';
 import { MdFavorite } from "react-icons/md";
-import { Musica_a_tocar } from '../playerContext';
+import { MusicaATocar } from '../playerContext';
 import { db } from '../../config/firebase_config';
 import { getDocs,doc, collection, query, where, updateDoc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -15,7 +15,7 @@ export default function SingleMusica(props){
   
   
     const playlistsCollectionRef = collection (db, "playlists")
-    const {playerActive, setPlayerActive, setmusicPassedToPlayer} = useContext(Musica_a_tocar)
+    const {playerActive, setPlayerActive, setmusicPassedToPlayer} = useContext(MusicaATocar)
     const [isLoading]= useState()
     const [isPlaying, setIsPlaying] = useState(false);
     const [list,setList] = useState();

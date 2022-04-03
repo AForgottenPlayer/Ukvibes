@@ -18,7 +18,6 @@ function Gender(){
         getGenero()
         return null
     },[])
-    console.log(params)
     
     async function getMusicas(){ 
         const getMusicas = await getDocs(query(collection(db, "musicas"), where("genero_id", "==", params.id)))

@@ -3,7 +3,7 @@ import Player from "./player"
 
 
 
-export const Musica_a_tocar= createContext(null)
+export const MusicaATocar= createContext(null)
 
 export default function PlayerContext({children}) {
 
@@ -12,13 +12,13 @@ export default function PlayerContext({children}) {
     const [musicPassedToPlayer, setmusicPassedToPlayer] = useState(false)
 
     return (
-        <Musica_a_tocar.Provider value={{playerActive, setPlayerActive, musicPassedToPlayer, setmusicPassedToPlayer}}>
+        <MusicaATocar.Provider value={{playerActive, setPlayerActive, musicPassedToPlayer, setmusicPassedToPlayer}}>
                 <div className='div_floating_player_container'>
-                    <Musica_a_tocar.Consumer> 
+                    <MusicaATocar.Consumer> 
                         {value=> playerActive&& <Player music={musicPassedToPlayer}/>}
-                    </Musica_a_tocar.Consumer> 
+                    </MusicaATocar.Consumer> 
                 </div>  
                 {children}
-        </Musica_a_tocar.Provider>
+        </MusicaATocar.Provider>
     )
 }

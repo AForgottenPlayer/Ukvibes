@@ -68,7 +68,7 @@ function Login(){
                         </div>
                         <div className="actions">
                             <button className="login_button" onClick={()=>loginFunction()}>Go</button>
-                            <a  onClick={()=>resetPasswordFunction()} className="forgot_password"> Forgot Password?</a>
+                            <button  onClick={()=>resetPasswordFunction()} style={{backgroundColor:"transparent", border: "none"}} className="forgot_password"> Forgot Password?</button>
                             <Link to="/register" className="register_button">Register</Link>
                         </div>
                     </div>

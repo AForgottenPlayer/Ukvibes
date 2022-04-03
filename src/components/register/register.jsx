@@ -10,8 +10,6 @@ function Register(){
     const auth = getAuth();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [user, setUser] = useState({});
-
     
     async function registerFunction (e){
         
@@ -83,8 +81,7 @@ function Register(){
                             <button className="login_button" onClick={() => registerFunction()}>Go</button>
                             <a href="/login" className="register_button">Login</a>
                         </div>
-                        <h3></h3>
-                    {user?.email}
+                        
 
                     </div>
                     
