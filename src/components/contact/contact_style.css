@@ -1,0 +1,140 @@
+body{
+  padding: 0;
+
+}
+
+
+.about_text{
+  color: rgb(27, 25, 25);
+  font-size: 60px;
+  letter-spacing: 6px;
+  font-family:"Bangers", fantasy;
+  transition: all 0.8s;
+  padding: 30px;
+
+  
+}
+.about_text:hover{
+  color: white;
+  margin-left: 20px;
+  padding: 1px;
+}
+
+.descriçao{
+  margin-left:0px;
+  font-size: 30px;
+  font-family: monospace; 
+}     
+
+.grid1{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+}
+.img-wrapper{
+ position: relative;
+ overflow: hidden;
+
+}
+
+.img-wrapper > img{
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img-wrapper > .content{
+  position: absolute;
+  font-family: monospace;
+  inset: 0;
+  font-size: 2rem;
+  padding: 1rem;
+  background: rgba(217, 225, 233, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+} 
+.img-wrapper > img,
+.img-wrapper > .content {
+  transition: 200ms ease-in-out;
+
+}
+
+.img-wrapper:hover > img.blur {
+  filter: blur(3px);
+}
+.img-wrapper:hover > img.zoom {
+  transform: scale(1.1); 
+}
+
+.img-wrapper:hover > .content.fade {
+  opacity: 1;
+}
+
+.container-border{
+  margin-left: 25%;
+  margin-top:50px;
+  width: 50%;
+  align-items: center;
+  justify-content: center;  
+}
+.form-group{
+  width: 100%;
+  margin-bottom: 1rem;
+  
+}
+label{
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.input_contact,
+.textcontact{
+  width: 100%;
+  font-size:  1.1rem;
+  padding: 1.2rem;
+  color:#0f0f0f;
+  background-color: var(--deep-dark);
+  outline:none;
+  /*border: none;*/
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+textarea{
+min-height: 250px;
+resize: both;
+}
+
+.contact_button{
+  margin-left: auto;
+  margin-top: 10px;
+  background-color: var(--deep-dark);
+  color: var(--bloack);
+  font-size: 1.22rem;
+  display: inline-block;
+  outline: none;
+  /*border: none ;*/
+  padding: 0.5rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+
+.faixa{
+  margin-top: 90px;
+  margin-block-end: 20px;
+  font-size: 20px;
+  width: 100%;
+  height: 150px;
+  background-color: #d699ff;
+  display:flex;
+ /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-around;
+  min-height: auto;
+  
+}
+

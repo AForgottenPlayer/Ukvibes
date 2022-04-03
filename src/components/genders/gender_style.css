@@ -1,0 +1,252 @@
+.grid{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    margin-top: 60px;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(180px));
+    grid-gap: 1rem;
+    cursor: pointer;
+
+}
+
+
+.single_genero{
+    width: 200px;
+    height: 120px;
+    background-color: #d699ff;
+    opacity: 0.5;
+    border-radius: 20px;
+    transition: all 0.8s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.single_genero:hover{
+    opacity: 0.8;
+    padding: 10px;
+}
+
+
+.gender_title{
+    margin-top: 20px;
+    width: 100%;
+    background-color:#d699ff ;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.middle{
+    align-items: center;
+    display: flex;
+}
+
+.musics{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: fit-content;
+    margin-top: 30px;
+}
+
+.music{
+    box-sizing: content-box;
+    width: 70%;
+    padding: 50px;
+    height:50px;
+    background-color:#d699ff;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 4px solid white;
+    transition: all 0.5s; 
+    position: relative;   
+}
+h2 {
+    column-width: 900px;
+}
+
+.music:hover{
+    color: black;
+    background-color: white;
+}
+
+.music:last-child{
+    margin-bottom: 0px;
+}
+.fwdbackwd {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
+.fwdbackwd:hover {
+    color:darkorchid;
+}
+
+.playPause {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.music:hover > .playPause{
+    color: darkorchid
+}
+
+.currentTime,
+.duration{
+    font-family: monospace;
+    font-size: 14px;
+
+}
+
+.currentTime {
+    margin-left: 10px;  
+}
+.progressBar {
+    --bar-bg:#ffe3d4;
+    --seek-before-width: 0;
+    --seek-before-color: #ffc2a1;
+    --knobby: #3452a5;
+    --selectedKnobby: #0e0d0d;
+    
+    appearance: none;
+    background: var(--bar-bg);
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    height: 11px;
+    outline: none;
+}
+
+.progressBar::before { /* estamos a por este elemento antes do progressbar que vis mostrar a musica já ouvida */
+    content: '';
+    height: 11px;
+    width: var(--seek-before-width);
+    background-color: var(--seek-before-color);
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+/* knobby */
+.progressBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--knobby);
+    cursor: pointer;
+    position: relative;
+    margin: -2px 0 0 0;
+    z-index: 3;
+    box-sizing: border-box;
+
+}
+.progressBar:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    background-color: var(--selectedKnobby);
+    
+}
+
+.favorite {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    transition: 1s;
+    cursor: pointer;
+    color: #3452a5;
+}
+
+.music:hover > .favorite{
+    color: darkorchid
+}
+
+.music_hover{
+    box-sizing: content-box;
+    width: 70%;
+    padding: 5px;
+    background-color:#d699ff;
+    border-radius: 20px;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 4px solid white;
+    transition: all 0.5s;
+    position:  fixed;
+    z-index: 10000;
+    bottom: 7px;
+}
+
+.div_floating_player_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: fit-content;
+}
+.download{
+    background:none;
+    border: none;
+    border-radius: 20%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 2s;
+
+}
+.download svg {
+    height: 18px;
+    width: 18px;
+}
+
+.watchlist {
+    padding: 5px;
+    cursor: pointer;
+    background:none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 2s;
+}
