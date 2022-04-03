@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { db } from '../../config/firebase_config';
 import { getDocs, collection } from "firebase/firestore"
 import { useNavigate } from 'react-router-dom'
+import Loader from '../loader';
 
 
 
@@ -12,7 +13,8 @@ function Genders (){
    
     const navigate = useNavigate();
     const [generos, setGeneros]= useState([])
-    
+    const [ isLoading, setLoading]= useState(true)
+
     useEffect (()=>{
         getGeneros()
     }, [])
@@ -24,15 +26,17 @@ function Genders (){
             generosList.push({...doc.data(), id: doc.id});
           });
         setGeneros(generosList)
+        setLoading(false)
     }
         return (
             <>
                 <div className="grid">
-                    {generos.map((genero, index)=>(
+                    {isLoading ? <Loader/>:
+                    (generos.map((genero, index)=>(
                         <div key={index}className="single_genero" onClick={()=>navigate("/gender/"+genero.id)}>
                             <h3>{genero.genero_nome.toUpperCase()}</h3>
                         </div>
-                    ))}
+                    )))}
                 </div>
             </>
           );

@@ -4,12 +4,15 @@ import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { db } from "../../config/firebase_config";
 import "./playlist_style.css";
 import SingleMusica from "../genders/single-musica";
+import Loader from "../loader";
 
 
 function UserPlaylist (){
 
   const [playlist, setPlaylist] = useState (false)
   const [musicas, setMusicas] = useState([])
+  const [ isLoading, setLoading]= useState(true)
+
   const params= useParams()
 
   useEffect(()=>{
@@ -29,6 +32,8 @@ function UserPlaylist (){
         const getArtist = await getDoc(doc(db, 'artistas', getMusic.data().artista_id))
         setMusicas(musicas=>[...musicas,{...getMusic.data(),music_id: getMusic.id, ...getArtist.data(), isFavorite:true}])
       })
+      setLoading(false)         
+
   }  
 
   
@@ -48,8 +53,10 @@ function UserPlaylist (){
             setMusicas(musicas=>[...musicas,{...getMusica.data(), id: docs, artista_nome: getArtistName.data().artista_nome, isFavorite: true, genderPage: true}])  
         }else{
             setMusicas(musicas=>[...musicas,{...getMusica.data(), id: docs, artista_nome: getArtistName.data().artista_nome, genderPage: true}]) 
-        } 
-    })            
+        }
+    }) 
+    setLoading(false)         
+  
 }  
 
 
@@ -68,16 +75,18 @@ function UserPlaylist (){
 
   return (
     <>
+
       <div className="playlist_title">
         <h2 className="middle" onClick={() =>console.log(musicas)}>{playlist && playlist.playlist_nome}</h2>
       </div>
-      
+      {isLoading ? <Loader/>:
       <div className="musics">
         
         {musicas && musicas.map((musica, index)=>(
           <SingleMusica key={index} removeSong={()=>removeSong(musica.music_id)} musica={musica}/>
         ))}
       </div>
+}
     </>
   )
 }

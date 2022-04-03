@@ -10,6 +10,7 @@ import Modal from "./modal";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth} from "firebase/auth";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import Loader from "../loader";
 
 function Playlist() {
   const auth = getAuth();
@@ -22,6 +23,8 @@ function Playlist() {
 
   const playlistsCollectionRef = collection (db, "playlists")
   const [newName, setNewName] =useState();
+  const [ isLoading, setLoading]= useState(true)
+
 
   useEffect(() => {
     getPlaylists()
@@ -36,6 +39,7 @@ function Playlist() {
       playlistsList.push({ ...doc.data(), id: doc.id });
     });
     setPlaylists(playlistsList);
+    setLoading(false)
   }
  } 
   
@@ -103,14 +107,13 @@ function Playlist() {
           </button>
         </div>
 
-      
+      {isLoading ? <Loader/>:
       <div className="grid">
+        
         {playlists.map((playlist, index) => (
           
-        <>  
-          <ContextMenuTrigger id={`contextmenu${index}`}>
-{/*             <button onClick={()=>updatePlaylist(playlist.id)}>delete</button>
- */}  
+          
+          <ContextMenuTrigger key={index} id={`contextmenu${index}`}>
             <div key={index} className="single_playlist" onClick={() => navigate("/userPlaylist/" + playlist.id)}>
               <h3>{playlist.playlist_nome.toUpperCase()}</h3>
             </div>
@@ -128,14 +131,11 @@ function Playlist() {
             </MenuItem>
           </ContextMenu>
           </ContextMenuTrigger>
-        </> 
+         
         ))}
-      </div> 
+      </div> }
       
  
-
-        {/* contexto menu  */}
-
     </>
   );
 

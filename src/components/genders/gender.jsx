@@ -44,12 +44,13 @@ function Gender(){
                 <div className="gender_title">
                     <h2 className='middle' onClick={()=>console.log(musicas)}>{genero && genero}</h2>
                 </div>
+                {isLoading ? <Loader/>:
                 <div className="musics">
-                    {isLoading ? <Loader/>:
-                    (musicas && musicas.map((musica, index)=>(
+                    {musicas && musicas.map((musica, index)=>(
                         <SingleMusica key={index} musica={musica}/>
-                    )))}
-                </div> 
+                    ))}
+                </div>
+                }
             </>
           );
         }                 
