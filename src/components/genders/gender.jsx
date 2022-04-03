@@ -4,11 +4,13 @@ import { db } from '../../config/firebase_config';
 import { doc, getDoc, getDocs, collection, where, query } from "firebase/firestore"
 import { useParams } from "react-router-dom";
 import SingleMusica from './single-musica';
+import Loader from '../loader';
 
 function Gender(){
     
     const [genero, setGenero]= useState(false)
     const [musicas, setMusicas] = useState([])
+    const [isLoading, setLoading]= useState(true)
     const params= useParams()
     
     useEffect(()=> {     
@@ -16,6 +18,7 @@ function Gender(){
         getGenero()
         return null
     },[])
+    console.log(params)
     
     async function getMusicas(){ 
         const getMusicas = await getDocs(query(collection(db, "musicas"), where("genero_id", "==", params.id)))
@@ -28,7 +31,8 @@ function Gender(){
             }else{
                 setMusicas(musicas=>[...musicas,{...docs.data(), id: docs.id, artista_nome: getArtistName.data().artista_nome, genderPage: true}]) 
             } 
-        })            
+        })
+        setLoading(false)            
     }  
 
     async function getGenero(){
@@ -42,9 +46,10 @@ function Gender(){
                     <h2 className='middle' onClick={()=>console.log(musicas)}>{genero && genero}</h2>
                 </div>
                 <div className="musics">
-                    {musicas && musicas.map((musica, index)=>(
+                    {isLoading ? <Loader/>:
+                    (musicas && musicas.map((musica, index)=>(
                         <SingleMusica key={index} musica={musica}/>
-                    ))} 
+                    )))}
                 </div> 
             </>
           );
