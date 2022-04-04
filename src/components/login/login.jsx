@@ -38,9 +38,8 @@ function Login(){
             const errorCode = error.code;
             if(errorCode === "auth/network-request-failed") return alert (" Falha no pedido ")
             if (errorCode === "auth/invalid-email") return alert("Email Inválido")
-            if(errorCode === "auth/user-not-found") return alert (" Email não encontrado")  
+            if(errorCode === "auth/user-not-found") return alert ("Email não encontrado")  
             if (errorCode === "auth/missing-email") return alert("Falta Preencher o Email")
-
         };
      }
 

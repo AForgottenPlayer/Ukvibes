@@ -6,7 +6,7 @@ import "./components/genders/gender_style.css";
 import PlayerContext from "./components/playerContext"
 import Header from "./components/header/header";
 import Loader from "./components/loader"
-
+// Atualiza cada componente 
 const Home = lazy(()=>import("./components/home/home"))
 const Contact = lazy(()=>import("./components/contact/contact"))
 const Login = lazy (()=>import("./components/login/login"))

@@ -79,7 +79,7 @@ function Register(){
                         </div>
                         <div className="actions">
                             <button className="login_button" onClick={() => registerFunction()}>Go</button>
-                            <a href="/login" className="register_button">Login</a>
+                            <a href="/" className="register_button">Login</a>
                         </div>
                         
 
