@@ -1,16 +1,20 @@
 import React, { useRef, useEffect, useState} from "react";
 import "./genders/gender_style.css";
-import { FaPlay, FaPause } from "react-icons/fa"
+import { FaPlay, FaPause } from "react-icons/fa";
+import { RiCloseFill } from 'react-icons/ri'
+
 
 export default function Player(props){
-  
+
   const [isPlaying, setIsPlaying] = useState(true)
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  
+ 
+
   const audioPlayer = useRef();
   const progressBar = useRef();
   const animationRef = useRef();
+  
   useEffect(()=>{
     const seconds = Math.floor(audioPlayer.current.duration);
     setDuration(seconds);
@@ -54,8 +58,10 @@ const changePlayerCurrentTime = () => {
   progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
   setCurrentTime(progressBar.current.value);
 }
-  return (
 
+
+  return (
+    <>
     <div className="music_hover" >
         <audio ref={audioPlayer} src={props.music.musica_url} preload="metadata"></audio>    
         <button onClick={togglePlayPause} className="playPause" >
@@ -72,6 +78,13 @@ const changePlayerCurrentTime = () => {
         </div>
         {/* duration */}
         <div className='duration'>{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
+     
+      
+      <button onClick={()=>props.closePlayer.setPlayerActive(false)} className="close"><RiCloseFill/></button> 
+    
     </div>
+    
+
+</>
   )
 }

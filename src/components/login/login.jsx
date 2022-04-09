@@ -26,6 +26,8 @@ function Login(){
             if(errorCode === "auth/invalid-email") return alert("Email Inválido")
             if(errorCode === "auth/internal-error") return alert("preencha todos os campos")
             if(errorCode === "auth/wrong-password") return alert("Password inválida")
+            if(errorCode === "auth/user-not-found") return alert ("Email não encontrado")  
+
             console.log("Falha no Login", error.message)
        }; 
      }

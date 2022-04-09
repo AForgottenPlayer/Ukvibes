@@ -12,6 +12,7 @@ import { getAuth} from "firebase/auth";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import Loader from "../loader";
 
+
 function Playlist() {
   const auth = getAuth();
   const [user] = useAuthState(auth);
@@ -134,8 +135,6 @@ function Playlist() {
          
         ))}
       </div> }
-      
- 
     </>
   );
 

@@ -3,6 +3,7 @@ import "./register_styles.css";
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { db } from '../../config/firebase_config';
 import {addDoc, collection} from "firebase/firestore";
+import { Link } from 'react-router-dom';
 
 function Register(){
     
@@ -28,16 +29,11 @@ function Register(){
         }catch(error){
             const errorCode = error.code;
             
-            if(errorCode === "auth/invalid-email" ) return alert("Email Inválido")
-            
-            if(errorCode === "auth/internal-error" ) return alert
-            ("preencha todos os campos")
-            
-            if(errorCode === "auth/weak-password") return alert
-            (" A Password deve ter pelo menos 6 caracteres")
-            
-            if(errorCode === "auth/email-already-in-use") return alert
-            ("Email já registado")   
+            if(errorCode === "auth/invalid-email" )  return alert("Email Inválido")
+            if(errorCode === "auth/internal-error" ) return alert ("preencha todos os campos")
+            if(errorCode === "auth/weak-password")   return alert (" A Password deve ter pelo menos 6 caracteres")
+            if(errorCode === "auth/email-already-in-use") return alert ("Email já registado") 
+            if(errorCode === "auth/user-not-found")  return alert ("Email não encontrado")
         } 
     }
     
@@ -78,8 +74,8 @@ function Register(){
                                 ></input>
                         </div>
                         <div className="actions">
-                            <button className="login_button" onClick={() => registerFunction()}>Go</button>
-                            <a href="/" className="register_button">Login</a>
+                            <Link to="/"><button className="login_button" onClick={() => registerFunction()}>Go</button></Link>
+                            <Link to="/" className="register_button">Login</Link>
                         </div>
                         
 
