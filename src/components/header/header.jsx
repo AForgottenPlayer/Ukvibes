@@ -5,7 +5,6 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from '../../config/firebase_config';
 import { Link } from "react-router-dom"
 
-
 function Header(){
 
 
@@ -26,14 +25,15 @@ function Header(){
         if(currentUser) setLoggedIn(true) 
         if(!currentUser) setLoggedIn(false)
     })
+    
 
-
-    function logout(){
+    function logout(){ 
         localStorage.removeItem('user_uid')
-        signOut(auth)
+        signOut(auth) 
     }
-
+    
         return (
+                
                 <div className="main_header">
                 <header className="header">
                 <Link to="/"><h1 className="logo_text">UkVibes</h1></Link>  
@@ -78,9 +78,10 @@ function Header(){
                            <div className="lines"></div>
                            
                        </div>     
+                       
                 </header>
                 </div>
-
+                                
           );
     }
 

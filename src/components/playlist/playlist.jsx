@@ -4,8 +4,8 @@ import "./addPlaylist.css";
 import { MdAdd, MdDriveFileRenameOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { db} from "../../config/firebase_config";
-import { getDocs, collection, addDoc, query, where, updateDoc , doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../config/firebase_config";
+import { getDocs, collection, addDoc, query, where, updateDoc , doc, deleteDoc, onSnapshot } from "firebase/firestore";
 import Modal from "./modal";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth} from "firebase/auth";
@@ -29,6 +29,11 @@ function Playlist() {
 
   useEffect(() => {
     getPlaylists()
+    if(user){
+      onSnapshot(query(playlistsCollectionRef,where("user_uid","==",user.uid && user.uid)),(snapshot)=>{
+        setPlaylists(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
+      });
+    } 
     return null
   }, [])
 
@@ -43,7 +48,7 @@ function Playlist() {
     setLoading(false)
   }
  } 
-  
+
   const addPlaylistFunction = async () => { 
     await addDoc(playlistsCollectionRef,{
       musicas: [],

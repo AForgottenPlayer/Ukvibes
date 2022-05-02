@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import "./login_style.css";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { getDocs, collection, where } from "firebase/firestore"
@@ -11,6 +11,7 @@ import { useNavigate, Link } from "react-router-dom"
 function Login(){
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
+    const secondInputRef = useRef()
     const navigate= useNavigate()
 
     async function loginFunction(){   
@@ -57,19 +58,22 @@ function Login(){
                                 type="text" 
                                 className="text_input" 
                                 placeholder="E-mail"
+                                onKeyDown={(e)=>{e.key==="Enter" && secondInputRef.current.focus()}}
                                 onChange={(e)=>setLoginEmail(e.target.value)}></input>
                         </div>
                         <div className="password">
                             <input 
+                                ref={secondInputRef}
                                 id="user_passowrd"
                                 type="password" 
                                 className="text_input" 
                                 placeholder="Password"
+                                onKeyDown={(e)=>{e.key==="Enter" && loginFunction()}}
                                 onChange={(e)=>setLoginPassword(e.target.value)}></input>
                         </div>
                         <div className="actions">
-                            <button className="login_button" onClick={()=>loginFunction()}>Go</button>
-                            <button  onClick={()=>resetPasswordFunction()} style={{backgroundColor:"transparent", border: "none"}} className="forgot_password"> Forgot Password?</button>
+                            <button className="login_button"  onClick={()=>loginFunction()}>Sign In</button>
+                            <button  onClick={()=>resetPasswordFunction()} style={{backgroundColor:"transparent", border: "none", fontWeight: "bold"}} className="forgot_password"> Forgot Password?</button>
                             <Link to="/register" className="register_button">Register</Link>
                         </div>
                     </div>

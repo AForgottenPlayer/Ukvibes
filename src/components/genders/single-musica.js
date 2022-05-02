@@ -32,7 +32,7 @@ export default function SingleMusica(props){
 
     useEffect(()=>{
       showplaylists()
-  
+      
       return null
     }, [ playerActive?.props]);
 
@@ -95,54 +95,39 @@ export default function SingleMusica(props){
 
  async function addToPlaylist(musicaid, playlistid){
   const songPlaylist= await getDoc(doc(db, 'playlists', playlistid))
-   
   if(songPlaylist.data().musicas.includes(musicaid)) return alert("Essa música já está na playlist")
   const newArray = [...songPlaylist.data().musicas, musicaid]
-
   try{
     await updateDoc(doc(db, 'playlists', playlistid), {
       musicas: newArray
     })
     alert("Música adicionada com sucesso")
-    
   }catch(e){
     console.log(e)
-    
   }
 }
 
   return (
-  <>
-      {isLoading ? "":
-    
-        <div className="music" >
-            <button onClick={()=>startSong()} className="playPause" >
-            { isPlaying ? <FaPause/> : <FaPlay/>}
-            </button>
-            <h2>{props.musica.artista_nome}</h2>
-            <h2>{props.musica.musica_nome}</h2> 
-            {isLoggedIn ? <> 
-
-            <div className='favorite'>
-            {isFav ? <i style={{padding: 20}} onClick={props.musica.genderPage ? ()=>removeSong() :props.removeSong}><MdFavorite/></i> : <i style={{padding: 20}} onClick={() => addFavorite(props.musica.id)}><GrFavorite/></i>}
+    isLoading ? "":
+          <div className="music" >
+              <button onClick={()=>startSong()} className="playPause" >
+                {isPlaying ? <FaPause size={20} className='iconsPlayer'/> : <FaPlay size={20} className='iconsPlayer'/>}
+              </button>
+              <h2>{props.musica.artista_nome}</h2>
+              <h2>{props.musica.musica_nome}</h2> 
+              {isLoggedIn && 
+              <> 
+                <div className='favorite'>
+                  {isFav ? <i style={{padding: 20}} onClick={props.musica.genderPage ? ()=>removeSong() :props.removeSong}><MdFavorite/></i> : <i style={{padding: 20}} onClick={() => addFavorite(props.musica.id)}><GrFavorite/></i>}
+                </div>
+                <div onClick={()=>showplaylists()}>
+                  <Menu menuButton={<MenuButton className='watchlist' > <FaList/></MenuButton>}>
+                    {list && list.map((lista, index)=>(
+                      <MenuItem key={index} onClick={()=>addToPlaylist(props.musica.id, lista.id)}>{lista.playlist_nome}</MenuItem>
+                    ))}
+                  </Menu>
+                </div>
+              </>} 
             </div>
-
-            <div onClick={()=>showplaylists()}>
-            
-            <Menu menuButton={<MenuButton className='watchlist' > <FaList/></MenuButton>}>
-              {list && list.map((lista, index)=>(
-                <MenuItem key={index} onClick={()=>addToPlaylist(props.musica.id, lista.id)}>{lista.playlist_nome}</MenuItem>
-                
-              ))}
-            </Menu>
-            </div>
-          
-            {/* <button onClick={()=> download()} className="download">
-            <BsDownload/>
-            </button> */}
-            </> :""} 
-          </div>} 
-      
-    </>
-  )
-}
+    );
+  }

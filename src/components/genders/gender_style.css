@@ -6,9 +6,8 @@
     align-items: center;
     justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(180px));
     grid-gap: 1rem;
-    cursor: pointer;
+    background-color: transparent;
 
 }
 
@@ -17,33 +16,35 @@
     width: 200px;
     height: 120px;
     background-color: #d699ff;
-    opacity: 0.5;
     border-radius: 20px;
     transition: all 0.8s;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer
 }
 
 .single_genero:hover{
-    opacity: 0.8;
-    padding: 10px;
+    padding: 3px;
 }
 
 
 .gender_title{
     margin-top: 20px;
     width: 100%;
-    background-color:#d699ff ;
+    background-color:#fff ;
     height: 40px;
     align-items: center;
     display: flex;
     justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .middle{
     align-items: center;
     display: flex;
+    color: black
 }
 
 .musics{
@@ -54,6 +55,7 @@
     width: 100%;
     height: fit-content;
     margin-top: 30px;
+    margin-bottom: 120px
 }
 
 .music{
@@ -61,25 +63,30 @@
     width: 70%;
     padding: 50px;
     height:50px;
-    background-color:#d699ff;
+    background-color:#fff;
     border-radius: 20px;
     display: flex;
-    color: white;
-    justify-content: space-around;
+    color: black;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    border: 4px solid white;
     transition: all 0.5s; 
     position: relative;   
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 h2 {
     column-width: 900px;
 }
 
-.music:hover{
-    color: black;
-    background-color: white;
+.iconsPlayer{
+    color: #000000;
+    transition: 0.3s
 }
+
+.iconsPlayer:hover{
+    color: purple
+}
+
 
 .music:last-child{
     margin-bottom: 0px;

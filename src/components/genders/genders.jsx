@@ -34,7 +34,7 @@ function Genders (){
                     {isLoading ? <Loader/>:
                     (generos.map((genero, index)=>(
                         <div key={index}className="single_genero" onClick={()=>navigate("/gender/"+genero.id)}>
-                            <h3>{genero.genero_nome.toUpperCase()}</h3>
+                            <h3 style={{color: "#fff"}}>{genero.genero_nome.toUpperCase()}</h3>
                         </div>
                     )))}
                 </div>

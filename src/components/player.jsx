@@ -6,7 +6,7 @@ import { RiCloseFill } from 'react-icons/ri'
 
 export default function Player(props){
 
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)//true
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
  
@@ -72,6 +72,7 @@ const changePlayerCurrentTime = () => {
         
         {/* current Time*/}
             <div className='currentTime'>{calculateTime(currentTime)}</div>
+       
         {/* progress bar*/}
         <div>
             <input type='range' className='progressBar' defaultValue="0" ref={progressBar} onChange={changeRange}></input>

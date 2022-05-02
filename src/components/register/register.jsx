@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import "./register_styles.css";
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { db } from '../../config/firebase_config';
@@ -11,6 +11,7 @@ function Register(){
     const auth = getAuth();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const secondInputRef = useRef()
     
     async function registerFunction (e){
         
@@ -60,21 +61,24 @@ function Register(){
                                 type="text" 
                                 className="text_input" 
                                 placeholder="E-mail"
+                                onKeyDown={(e)=>{e.key==="Enter" && secondInputRef.current.focus()}}
                                 onChange={(e) => setEmail(e.target.value)}
                                 >  
                             </input>
                         </div>
                         <div className="password">
                             <input
+                                ref={secondInputRef}
                                 id="password" 
                                 type="password" 
                                 className="text_input" 
                                 placeholder="Password"
+                                onKeyDown={(e)=>{e.key==="Enter" && registerFunction()}}
                                 onChange={(e) => setPassword(e.target.value)}
                                 ></input>
                         </div>
                         <div className="actions">
-                            <Link to="/"><button className="login_button" onClick={() => registerFunction()}>Go</button></Link>
+                            <Link to="/"><button className="login_button" onClick={() => registerFunction()}>Register</button></Link>
                             <Link to="/" className="register_button">Login</Link>
                         </div>
                         
