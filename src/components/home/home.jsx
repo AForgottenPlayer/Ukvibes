@@ -12,7 +12,7 @@ function Home(){
       if(currentUser) setShowLogin(true)
       if(!currentUser) setShowLogin(false)
     })  
-    console.log(process.env)
+   // console.log(process.env)
   
   return (
     <>
