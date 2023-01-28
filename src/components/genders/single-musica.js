@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react'
 import "./gender_style.css";
-import { FaPlay, FaPause, FaList} from "react-icons/fa"
+import { FaPlay, FaPause, FaList} from "react-icons/fa" //hmmm
 import { GrFavorite } from 'react-icons/gr';
 import { MdFavorite } from "react-icons/md";
+import { AiOutlineCloudDownload } from 'react-icons/ai'
 import { MusicaATocar } from '../playerContext';
 import { db } from '../../config/firebase_config';
-import { getDocs,doc, collection, query, where, updateDoc, getDoc } from "firebase/firestore";
+import { getDocs,doc, collection, query, where, updateDoc, getDoc,} from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {Menu, MenuItem, MenuButton} from '@szhsin/react-menu'
+import { Menu, MenuItem, MenuButton} from '@szhsin/react-menu'
 import '@szhsin/react-menu/dist/index.css';
+
 
 export default function SingleMusica(props){
   
@@ -106,6 +109,31 @@ export default function SingleMusica(props){
     console.log(e)
   }
 }
+async function download(){
+  const storage = getStorage();
+  getDownloadURL(ref(storage, 'gs://ukvibes-160b2.appspot.com/musicas/'))
+  .then((url) => {
+    // `url` is the download URL for 'images/stars.jpg'
+
+    // This can be downloaded directly:
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = (event) => {
+      const blob = xhr.response;
+    };
+    xhr.open('GET', url);
+    xhr.send();
+
+    // Or inserted into an <img> element
+    const img = document.getElementById('myimg');
+    img.setAttribute('src', url);
+  })
+  .catch((error) => {
+    // Handle any errors
+    console.log(error)
+  });
+  console.log("TEST")
+}
 
   return (
     isLoading ? "":
@@ -127,6 +155,9 @@ export default function SingleMusica(props){
                     ))}
                   </Menu>
                 </div>
+                <button onClick={()=>download()} className='watchlist'>
+                <AiOutlineCloudDownload size={50}></AiOutlineCloudDownload>
+                </button>
               </>} 
             </div>
     );

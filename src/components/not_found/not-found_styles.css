@@ -1,0 +1,53 @@
+.row{
+    height: 400px;
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_not{
+    height: 50%;
+    width: 30%;
+    background-color: #d699ff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text_not{
+    color: black;
+    font-size: 24px;
+    transition: all 0.8s;
+    margin-bottom: 35px;
+}
+
+
+
+.container_not:hover .text_not{
+    font-size: 20px;
+
+}
+
+.container_not:hover .link_not_home{
+    font-size: 25px;
+    color: white;
+    
+}
+
+.link_not_home{
+    font-size: 20px;
+    transition: all 0.8s;
+    color: black;
+    font-weight: bold;
+    padding: 12px
+}
+
+.link_not_home:hover{
+    color: white;
+}
+
+

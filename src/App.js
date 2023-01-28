@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, createContext } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase_config"
@@ -6,7 +6,11 @@ import "./components/genders/gender_style.css";
 import PlayerContext from "./components/playerContext"
 import Header from "./components/header/header";
 import Loader from "./components/loader"
+import "./components/header/header_style.css"
+import "./App.css"
 // Atualiza cada componente 
+const Home_bo = lazy(() => import("./backoffice/home_bo"))
+const Login_bo = lazy(()=>import("./backoffice/login_bo"))
 const Home = lazy(()=>import("./components/home/home"))
 const Contact = lazy(()=>import("./components/contact/contact"))
 const Login = lazy (()=>import("./components/login/login"))
@@ -19,11 +23,14 @@ const Playlist = lazy(()=>import("./components/playlist/playlist"))
 const UserPlaylist = lazy(()=>import("./components/playlist/userPlaylist"))
 
 
+export const ThemeContext = createContext(null)
 
 
 function App() {
 
   const [isLoggedIn, setLoggedIn] = useState(false)
+  
+
 
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
@@ -35,12 +42,18 @@ function App() {
     });
 
   },[])
+
+
   return (
     <Router>
+     
       <Header/> 
       <PlayerContext>
         <Suspense fallback={<Loader/>}>
           <Routes>
+            
+              <Route path='/login_bo' element={<Login_bo/>} />
+              <Route path='/home_bo' element={<Home_bo/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/genders" element={<Genders/>} />
               <Route path="/gender/:id" element={<Gender/>} />
@@ -55,6 +68,7 @@ function App() {
           </Routes> 
         </Suspense>
       </PlayerContext>
+      
    </Router>
   );
   

@@ -30,10 +30,9 @@ function Playlist() {
   useEffect(() => {
     getPlaylists()
     if(user){
-      onSnapshot(query(playlistsCollectionRef,where("user_uid","==",user.uid && user.uid)),(snapshot)=>{
-        setPlaylists(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
+      onSnapshot(query(playlistsCollectionRef,where("user_uid","==",user.uid && user.uid)),(snapshot)=>{setPlaylists(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
       });
-    } 
+    }
     return null
   }, [])
 
