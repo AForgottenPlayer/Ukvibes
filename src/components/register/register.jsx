@@ -17,16 +17,16 @@ function Register(){
         
         try{
             const createUser = await createUserWithEmailAndPassword(auth, email, password)
-            // try{
-            //     const createLike =await addDoc(collection(db, 'playlists'),{
-            //         user_uid: createUser.user.uid,
-            //         playlist_nome: "Favoritos"
-            //     })    
-            //     localStorage.setItem("fav_playlist_id",createLike.id)
-            //     localStorage.setItem("user_uid", createUser.user.uid)
-            // }catch(e){
-            //     e && console.log(e)
-            // }
+            try{
+                const createLike =await addDoc(collection(db, 'playlists'),{
+                    user_uid: createUser.user.uid,
+                    playlist_nome: "Favoritos"
+                })    
+                localStorage.setItem("fav_playlist_id",createLike.id)
+                localStorage.setItem("user_uid", createUser.user.uid)
+            }catch(e){
+                e && console.log(e)
+            }
         }catch(error){
             const errorCode = error.code;
             
